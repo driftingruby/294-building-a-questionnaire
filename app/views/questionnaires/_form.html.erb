@@ -1,0 +1,27 @@
+<%= form_with(model: questionnaire) do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div data-controller="nested-form">
+    <template data-nested-form-target='template'>
+      <%= form.fields_for :questions, Question.new, child_index: 'TEMPLATE_RECORD' do |question| %>
+        <%= render 'question_fields', form: question %>
+      <% end %>
+    </template>
+
+    <%= form.fields_for :questions do |question| %>
+      <%= render 'question_fields', form: question %>
+    <% end %>
+
+    <div data-nested-form-target="add_item">
+      <%= link_to "Add Question", "#", data: { action: "nested-form#add_association" } %>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

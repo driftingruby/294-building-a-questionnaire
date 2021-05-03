@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  questionnaire: one
+  name: MyString
+  question_type: 1
+  required: false
+
+two:
+  questionnaire: two
+  name: MyString
+  question_type: 1
+  required: false

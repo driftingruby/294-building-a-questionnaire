@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @questionnaire.name %></h1>
+
+<% @questionnaire.questions.each do |question| %>
+  <h2><%= question.name %></h2>
+
+  <% case question.question_type %>
+  <% when 'single_choice' %>
+    <% question.answers.each do |answer| %>
+      <p>
+        <%= radio_button_tag question.id, answer.id %>
+        <%= answer.name %>
+      </p>
+    <% end %>
+  <% when 'multiple_choice' %>
+    <% question.answers.each do |answer| %>
+      <p>
+        <%= check_box_tag question.id, answer.id %>
+        <%= answer.name %>
+      </p>
+    <% end %>
+  <% when 'long_answer' %>
+    <%= text_area_tag question.id %>
+  <% end %>
+<% end %>
+
+<%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
+<%= link_to 'Back', questionnaires_path %>
